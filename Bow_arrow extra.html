@@ -1,0 +1,412 @@
+<html>
+ <head>
+	<title>Arrow game</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <style type="text/css">
+      body{
+        background: url("https://i.stack.imgur.com/p9mUO.jpg");
+      }
+      #start{
+        background-color: #00F000;
+      }
+
+      #pause{
+        background-color: #0000F0;
+      }
+
+      #stop{
+        background-color: #F00000;
+      }
+      #canvas{
+        padding-left: 120px;
+        padding-top: 20px;
+      }
+
+    </style>
+ </head>
+ <body>
+  <div class = "page-header">
+    <button id = "start">Start</button>
+    <button id = "pause">Pause/Resume</button>
+    <button id = "stop">Stop</button>
+  </div>
+   <canvas id = "canvas" width = "600" height = "500"></canvas>
+   
+   <script type="text/javascript">
+    var canvas = document.getElementById("canvas");
+    var ctx = canvas.getContext("2d");
+    var A = canvas.getContext("2d");
+    var star = canvas.getContext("2d");
+    var ballRadius = 25;
+    var y = 120;
+    var dy = 2;
+    var arrowStart;
+    var arrowLength = 150;
+    var spaceBarPressed = false;
+    var upPressed = false;
+    var downPressed = false;
+    var arrowY =150;
+    var arrowX;
+    var gameScore = 0;
+    var status = 0;
+    var gameLives = 0;
+    var startGame;
+    var bowLength = 75;
+    var bowIncrement = 3;
+    var target = new Array();
+    var score = new Array();
+    var circle_one = 50;
+    var circle_two = 20;
+    var circle_three = 10;
+    var shotArrow
+    var leadingPointY;
+    var arrowStartY = 150;
+    var deg;
+    var leftPressed = false;
+    var rightPressed = false;
+    var arrowAngle = -Math.PI/8;
+    var arrowYe;   
+    var dx = 0; var dye = 0;
+    arrowStart = 70;
+
+    function drawTarget(){
+
+          ctx.beginPath();
+          ctx.lineWidth = 5;
+          ctx.strokeStyle = "#FF0000"
+          ctx.arc(480,y, ballRadius, 0, Math.PI*2);
+          ctx.stroke();
+          ctx.closePath();
+  
+          ctx.beginPath();
+          ctx.lineWidth = 5;
+          ctx.strokeStyle = "#00FF00"
+          ctx.arc(480,y, ballRadius+25, 0, Math.PI*2);
+          ctx.stroke();
+          ctx.closePath();
+
+          ctx.beginPath();
+          ctx.lineWidth = 5;
+          ctx.strokeStyle = "#0000FF"
+          ctx.arc(480,y, ballRadius+50, 0, Math.PI*2);
+          ctx.stroke();
+          ctx.closePath();
+  
+  
+     }  
+    
+        function movingTarget(){
+      	 ctx.clearRect(0,0,600,500);
+         A.clearRect(0,0,150,150);
+         drawTarget();
+         //gameOver();
+         //drawAim();
+         drawScoreBoard();
+         drawBow();
+         //bowIncrement = 3;
+         
+         y += dy;
+         if( y+dy > canvas.height-120 || y+dy<75 ){
+           dy = -dy;
+          }
+         document.addEventListener("keydown",keyDownHandler,false);
+         document.addEventListener("keyup",keyUpHandler,false);
+
+    
+      function keyUpHandler(e){
+          if(e.keyCode== 32){
+            spaceBarPressed = false;
+             gameUpdate_1 = 0; gameUpdate_2 = 0;
+          }
+          if(e.keyCode==40){         //keyCode down arrow is 40
+            downPressed = false;
+          }
+          if(e.keyCode == 38){      //keyCode up arrow is 38
+            upPressed = false;
+          }
+          if(e.keyCode==39){         //keyCode right arrow is 39
+            rightPressed = false;
+          }                      
+          if(e.keyCode==37){        //keyCode left arrow is 37
+            leftPressed = false; 
+          }  
+        }
+          
+      function keyDownHandler(e){
+
+    	    if(e.keyCode == 32){
+    		    spaceBarPressed = true;
+            count = 0;
+            arrowStart = 30;
+            arrowStartY = 150;
+            //arrowNumbers--;
+    	     }
+
+          if(e.keyCode==40){
+            downPressed = true;
+          }
+          if(e.keyCode == 38){
+            upPressed = true;
+          }
+          if(e.keyCode==39){         //keyCode right arrow is 39
+            rightPressed = true;
+          }                      
+          if(e.keyCode==37){        //keyCode left arrow is 37
+            leftPressed = true; 
+          }  
+
+         }       
+
+      if(upPressed){
+        arrowY+= -3;
+  
+       }
+
+      if(downPressed){
+        arrowY+= 3;
+       }
+      if(rightPressed){ 
+        arrowAngle += Math.PI/75;     
+       }
+      if(leftPressed){
+        arrowAngle += -Math.PI/75;
+       }  
+
+      if(spaceBarPressed){  
+       
+        status = 0;  
+         //  count++;
+        shotArrow = setInterval(shootArrow,1500);
+
+        // gameLives = gameLives-1;
+       }     
+      if(arrowY<100||arrowY>360){
+        bowIncrement = -bowIncrement;
+       }
+       
+    }
+  
+        function drawArrow(){
+
+          //targetHitting();
+          arrowX = Math.round(arrowLength*Math.cos(arrowAngle));
+         // console.log("value of " + arrowX);
+          //console.log((arrowAngle*180)/Math.PI);
+          arrowYe = Math.round(arrowLength*Math.sin(arrowAngle));
+     	     ctx.beginPath();
+           ctx.font = "30px Arial";
+           ctx.moveTo(arrowStart,arrowStartY);
+           ctx.lineTo(arrowX+arrowStart,arrowYe+arrowStartY);
+           ctx.stroke();
+           ctx.closePath();
+         // ]leadingPointX = arrowStart+arrowLength;
+          leadingPointY = arrowStartY;          
+          if(arrowStart == 70 ){
+            gameLives++;
+          }  
+          
+
+
+          
+             
+
+         
+          //*/
+           //storing a directory of all the point comprising of the arrow
+         
+       }
+
+       /* function drawAim(){
+         ctx.beginPath();
+         ctx.linewidth = 1;
+         ctx.setLineDash([5, 7]);
+         ctx.moveTo(30, arrowY);
+         ctx.lineTo(450, y);
+         ctx.stroke();
+      } */
+
+       function shootArrow(){
+     
+           arrowX = Math.round(arrowLength*Math.cos(arrowAngle));
+           arrowYe = Math.round(arrowLength*Math.sin(arrowAngle));
+           arrowStart = arrowStart + arrowX;
+           arrowStartY = arrowStartY + arrowYe;
+           if(arrowStart>405&&arrowStart<555){
+          var testerX = Math.round(480*Math.cos(arrowAngle));
+          var testerY = y*Math.sin(arrowAngle);
+          console.log(arrowStart+"  this is the coordinates");
+            if(arrowStart>=testerX||arrowStartY>=testerY){
+            targetHitting();
+          }
+        }
+          drawArrow();
+       //targetHitting();
+        // dx+=10;dye+=10;       
+      }
+         
+        function drawScoreBoard(){
+            A.clearRect(0,0,150,150);
+            A.strokeText(gameScore,60,70);
+            A.font = "10px Arial";
+           // A.lineWidth = 2;
+            A.beginPath();
+            //A.rect(600,100,100,100);
+            A.stroke();   
+            A.closePath();
+
+            A.strokeText(gameLives,40,40);
+            A.font = "10px Arial";
+            //A.lineWidth = 2;
+            A.beginPath();
+            //A.rect(600,100,100,100);
+            A.stroke();   
+            A.closePath();
+         // console.log(gameLives);
+
+
+      }
+
+        function drawBow(){
+  
+         var arrowXB = Math.round(60*Math.cos(arrowAngle));
+          //console.log((arrowAngle*180)/Math.PI);
+         var arrowYeB = Math.round(60*Math.sin(arrowAngle));
+        
+         ctx.beginPath();
+         ctx.font = "30px Arial";
+         ctx.moveTo(30+40,150);
+         ctx.lineTo(30+40+arrowXB,150+arrowYeB);
+         ctx.stroke();
+         ctx.closePath();  
+
+
+  /*       ctx.beginPath();
+         ctx.font = "30px Arial";
+         ctx.moveTo(10+40,arrowY-75);
+         ctx.lineTo(30+40,arrowY-75);
+         ctx.stroke();
+         ctx.closePath();  
+
+         ctx.beginPath();
+         ctx.font = "30px Arial";
+         ctx.moveTo(10+40,arrowY+75);
+         ctx.lineTo(30+40,arrowY+75);
+         ctx.stroke();
+         ctx.closePath();  */
+
+         ctx.beginPath();
+         ctx.font = "30px Arial";
+         ctx.arc(50,arrowY, 75, -.5*Math.PI, -1.5*Math.PI);
+         ctx.stroke();
+         ctx.closePath();
+
+         ctx.beginPath();
+         ctx.font = "30px Arial";
+         ctx.moveTo(30+40,arrowY-bowLength-10);
+         ctx.lineTo(30+40,arrowY+bowLength+10);
+         ctx.stroke();
+         ctx.closePath();  
+
+
+      }
+
+        function bullsEye(){
+        //  console.log("hi");
+          for(var starY = 60;starY<400;starY+=60){
+           var starPic = new Image;
+           star.beginPath();
+           starPic.src = "https://www.freeclipartnow.com/d/41631-1/smooth-star.jpg";
+           star.drawImage(starPic,550,starY,30,30);
+           star.stroke(); 
+           star.closePath();
+          }
+      }
+        
+            
+       /* function targetHitting(){
+
+              if((arrowStart>405&&arrowStart<555)&& (arrowY>y-75&&arrowY<y+75)&&status ==0 ){
+
+                if( (arrowStart>430&&arrowStart<530) && (arrowY>y-50&&arrowY<y+50) ){ 
+                   if((arrowStart>455&&arrowStart<505) && (arrowY>y-25&&arrowY<y+25)){ 
+                        gameScore += 50;
+                       }
+                   else{
+                    gameScore += 20;
+                   }
+                 }
+                 else{
+                  gameScore += 10;
+                 }
+               }
+               else{
+                gameScore+= 0;
+               }
+       }*/
+
+
+          function targetHitting(){
+           var circleX = arrowStart; var circleY = arrowStartY;
+
+            var radius = Math.sqrt( ( (circleX-480)*(circleX-480) )+( (circleY-y)*(circleY-y) ) );
+
+             if(radius>50 && radius<=75){
+              gameScore+=10;
+             }
+             else if(radius>25 && radius<=50){
+              gameScore+=20;
+             }
+             else if(radius>0 && radius<=25){
+              gameScore += 50;
+             }
+             else{
+              gameScore += 0;
+             }
+
+           /*ctx.beginPath();
+          ctx.lineWidth = 5;
+          ctx.strokeStyle = "#00FF00"
+          ctx.arc(480,y, radius, 0, Math.PI*2);
+          ctx.stroke();
+          ctx.closePath();*/
+        
+
+          }
+      
+       
+         
+         
+
+       /* function gameOver(){
+          if(gameLives==7){
+          clearInterval(startGame);
+          alert("gameOver!! You scored "+ gameScore + " points");
+          }
+      }*/
+         
+       $("#stop").click(function(){
+           clearInterval(startGame);
+           clearInterval(shotArrow);
+           alert("You scored "+gameScore+ " points");
+        });
+
+      $("#start").click(function(){
+        startGame = setInterval(movingTarget,20);
+      });
+
+      $("#pause").click(function(){
+        clearInterval(startGame);
+        clearInterval(shotArrow);
+      
+      });
+
+      $("#pause").dblclick(function(){
+        startGame = setInterval(movingTarget,20);
+        shotArrow = setInterval(shootArrow,1000);
+
+      });
+
+   </script>
+ </body>
+</html>
