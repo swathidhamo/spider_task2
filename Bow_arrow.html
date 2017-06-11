@@ -5,33 +5,138 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <style type="text/css">
       body{
-        background: url("https://i.stack.imgur.com/p9mUO.jpg");
+       /* background: url("https://i.stack.imgur.com/p9mUO.jpg");*/
+       
+        background: url("https://i.stack.imgur.com/p9mUO.jpg"); 
+        background: -webkit-linear-gradient(-90deg, #02245e, #001000); /* For Safari 5.1 to 6.0 */
+        background: -o-linear-gradient(-90deg, #02245e, #001000); /* For Opera 11.1 to 12.0 */
+        background: -moz-linear-gradient(-90deg, #02245e, #001000); /* For Firefox 3.6 to 15 */
+        background: linear-gradient(-90deg, #02245e, #001000); /* Standard syntax */
+
       }
-      #start{
+     /* #start{
         background-color: #00F000;
-      }
+      }*/
 
-      #pause{
-        background-color: #0000F0;
-      }
+   button: {
+    left: 50%;
+    margin: -40px;
+    position: absolute;
+    float: right;
+    top: 50%;
+  }
+    button:hover,
+    button:active {
+            outline: 0;
+         }
+    #start{
+      margin-left: 300px;
+    }
 
-      #stop{
-        background-color: #F00000;
-      }
+/* 3D Button */
+
+   button.depth {
+      background: #444;
+      border: none;
+      border-radius: 80px;
+      box-shadow: inset 0 0 2px 2px hsla(0,0%,0%,.2),
+                inset 0 0 2px 4px hsla(0,0%,0%,.2),
+                inset 0 0 2px 6px hsla(0,0%,0%,.2),
+                inset 0 0 1px 8px hsla(0,0%,0%,.5),
+                inset 0 -4px 2px 4px hsla(0,0%,0%,.5),
+                inset 0 1px 1px 8px hsla(0,0%,100%,.25),
+                inset 0 -30px 30px hsla(0,0%,0%,.2),
+                0 -4px 8px 4px hsla(0,0%,0%,.5),
+                0 10px 10px hsla(0,0%,0%,.25),
+                0 0 2px 2px hsla(0,0%,0%,.2),
+                0 0 2px 4px hsla(0,0%,0%,.2),
+                0 0 2px 6px hsla(0,0%,0%,.2),
+                0 0 2px 8px hsla(0,0%,0%,.5),
+                0 1px 2px 8px hsla(0,0%,100%,.25),
+                0 -1px 2px 8px hsla(0,0%,0%,.5);
+       vertical-align:          
+       color: #303030;
+       cursor: pointer;
+       font: bold 25px/65px sans-serif;
+       height: 80px;
+       padding: 10px 10px 10px 10px ;
+       margin: 10px 10px 10px 100px ;
+       text-shadow: 0 1px 1px hsla(0,0%,100%,.25),
+                 0 -1px 1px hsla(0,0%,0%,.75);
+       width: 80px;
+}
+    button.depth:hover,
+    button.depth:focus {
+    color: #0ab;
+       text-shadow: 0 0 20px hsla(240,75%,75%,.5),
+                       0 1px 1px hsla(0,0%,100%,.25),
+                 0 -1px 1px hsla(0,0%,0%,.75);
+   }
+   button.depth:active {
+       box-shadow: inset 0 0 2px 2px hsla(0,0%,0%,.2),
+                  inset 0 0 2px 4px hsla(0,0%,0%,.2),
+                  inset 0 0 2px 6px hsla(0,0%,0%,.2),
+                  inset 0 0 1px 7px hsla(0,0%,0%,.5),
+                  inset 0 5px 15px 7px hsla(0,0%,0%,.15),
+                  inset 0 -4px 2px 3px hsla(0,0%,0%,.5),
+                  inset 0 1px 1px 7px hsla(0,0%,100%,.25),
+                  inset 0 -30px 30px hsla(0,0%,0%,.1),
+                  inset 0 30px 30px hsla(0,0%,0%,.2),
+                    0 -4px 8px 4px hsla(0,0%,0%,.5),
+                  0 5px 10px hsla(0,0%,0%,.25),
+                    0 0 2px 2px hsla(0,0%,0%,.2),
+                0 0 2px 4px hsla(0,0%,0%,.2),
+                  0 0 2px 6px hsla(0,0%,0%,.2),
+                0 0 2px 8px hsla(0,0%,0%,.5),
+                0 1px 2px 8px hsla(0,0%,100%,.25),
+                0 -1px 2px 8px hsla(0,0%,0%,.5);
+        line-height: 86px;
+}
+
       #canvas{
         padding-left: 120px;
         padding-top: 20px;
       }
+      #intro{
+        margin: 100px 100px 100px 100px;
+        border: 2px solid white;
+        font-size: 30px;
+      
+      }
+
 
     </style>
  </head>
  <body>
-  <div class = "page-header">
-    <button id = "start">Start</button>
-    <button id = "pause">Pause/Resume</button>
-    <button id = "stop">Stop</button>
+  <div>
+    
+        <button id = "start" class = "depth" type = "button">Start</button>
+          <button id = "stop" class = "depth">Stop</button>
+     
+
+    <button id = "pause" class = "depth">Pause</button>
+   
   </div>
-   <canvas id = "canvas" width = "600" height = "500"></canvas>
+  
+   <!--<div id = "intro">
+    <ul>
+     <li>Hello there !</li>
+     <li>Let's play a game shall we ?</li>
+     <li>And let's go back a few centuries.</li>
+     <li>Do you think you could have survived if you had to fight with a bow.</li>
+     <li>Let's find out now!</li>
+     <li>You have 7 Lives initially</li>
+     <li>Shooting at dead centre gives you 50 points, the next circle gives you 20 and the last one 10 points</li>
+     <li>Watch out for the brick, that means a penalty of 10 points</li>
+     <li>The 3 gives you three extra lives</li>
+
+    </ul>
+
+
+   </div>-->
+    <canvas id = "canvas" width = "600" height = "500"></canvas>
+ 
+
    
    <script type="text/javascript">
     var canvas = document.getElementById("canvas");
@@ -39,6 +144,7 @@
     var A = canvas.getContext("2d");
     var star = canvas.getContext("2d");
     var statObstruction = canvas.getContext("2d");
+    //var intro = document.getElementById("intro");
     var ballRadius = 25;
     var y = 120;
     var dy = 2;
@@ -70,20 +176,39 @@
     var obstruction_2 = new Image;
     var obstruction_3 = new Image;
     var oppX = 250;
+    var dyopp = 4;
     var revX = Math.round(Math.random()*400);
     var revY = Math.round(Math.random()*400);
-    if(revX<=150||revY<=150){
+    if(revX<=200||revY<=200){
       revX = Math.round(Math.random()*400);
       revY = Math.round(Math.random()*400);
     }
     
-    var oppY = 250;
+    
+    var oppY = 50;
 
     bullseyePic.src = "https://pbs.twimg.com/profile_images/598218580820299776/riyOfMzy.png";
     obstruction.src = "http://pre03.deviantart.net/536b/th/pre/i/2010/301/2/6/bullseye_by_himanuts-d31pc8v.png";
     obstruction_1.src = "http://www.clker.com/cliparts/b/m/0/m/n/D/brick-wall-jail.svg";
     obstruction_2.src = "http://img.clipartall.com/warrior-helmet-clipart-1-warrior-clipart-660_660.jpg";
     obstruction_3.src = "http://www.panel2panel.com/wp-content/uploads/2014/03/animal-number-three-md.png";
+
+       function sound(src) {
+     this.sound = document.createElement("audio");
+     this.sound.src = src;
+     this.sound.setAttribute("preload", "auto");
+     this.sound.setAttribute("controls", "none");
+     this.sound.style.display = "none";
+     document.body.appendChild(this.sound);
+     this.play = function(){
+        this.sound.play();
+     }
+     this.stop = function(){
+        this.sound.pause();
+     }
+   }
+   var gameSound;
+   gameSound = new sound("https://sampleswap.org/mp3/artist/2/canton_Lewd-Day-160.mp3");
 
     
 
@@ -186,8 +311,13 @@
        }     
     /*if(arrowY<100||arrowY>360){
       bowIncrement = -bowIncrement;
-    }*/
+
+    }*/oppY+=dyopp;
+    if(oppY>canvas.height||oppY<0){
+     dyopp = -dyopp;
     }
+
+        }
  
         function drawArrow(){
           //targetHitting();
@@ -224,6 +354,7 @@
             A.clearRect(0,0,150,150);
             A.strokeText(gameScore,60,70);
             A.font = "10px Arial";
+            A.strokeStyle = "#FFFFFE";
            // A.lineWidth = 2;
             A.beginPath();
             //A.rect(600,100,100,100);
@@ -232,6 +363,8 @@
 
             A.strokeText(gameLives,40,40);
             A.font = "10px Arial";
+            A.strokeStyle = "#FFFFFE";
+
             //A.lineWidth = 2;
             A.beginPath();
             //A.rect(600,100,100,100);
@@ -246,6 +379,7 @@
 
          ctx.beginPath();
          ctx.font = "30px Arial";
+         ctx.strokeStyle = "#4f300e";
          ctx.moveTo(50,arrowY);
          ctx.lineTo(125,arrowY);
          ctx.stroke();
@@ -253,12 +387,14 @@
 
          ctx.beginPath();
          ctx.font = "30px Arial";
+         ctx.strokeStyle = "#4f300e";
          ctx.arc(50,arrowY, 75, -.5*Math.PI, -1.5*Math.PI);
          ctx.stroke();
          ctx.closePath();  
 
          ctx.beginPath();
          ctx.font = "30px Arial";
+         ctx.strokeStyle = "#4f300e";
          ctx.moveTo(50,arrowY-bowLength);
          ctx.lineTo(50,arrowY+bowLength);
          ctx.stroke();
@@ -298,11 +434,13 @@
 
            statObstruction.beginPath();
            statObstruction.rect(oppX,oppY,70,60);
+           ctx.strokeStyle="#000000";
            statObstruction.drawImage(obstruction_1,oppX,oppY,70,60)
            statObstruction.stroke(); 
            statObstruction.closePath();
            
            statObstruction.beginPath();
+           ctx.strokeStyle="#000000";
            statObstruction.rect(revX,revY,60,50);
            statObstruction.drawImage(obstruction_3,revX,revY,60,50);
            statObstruction.stroke(); 
@@ -380,43 +518,34 @@
       }
 
 
+
       $("#stop").click(function(){
           clearInterval(startGame);
           clearInterval(shotArrow);
           alert("You scored "+gameScore+ " points");
+          gameSound.stop();
+
       });
 
       $("#start").click(function(){
         startGame = setInterval(movingTarget,20);
+        gameSound.play();
+      
+
       
       });
 
       $("#pause").click(function(){
         clearInterval(startGame);
-        clearInterval(shotArrow);      
+        clearInterval(shotArrow);  
+        gameSound.stop();    
       });
 
       $("#pause").dblclick(function(){
         startGame = setInterval(movingTarget,20);
         shotArrow = setInterval(shootArrow,1000);
+        gameSound.play();
       });
-
-          /*  function targetHitting(){
-        
-    
-        if( ( (arrowStart>375&&arrowStart<400) || (arrowStart>500&&arrowStart<525) )&&( (arrowY>y-75&&arrowY<y-50) || (arrowY>y+50&&arrowY<y+75) ) ){ 
-             gameScore += 10;
-         }
-
-        else if( ( (arrowStart>400&&arrowStart<425) || (arrowStart>475&&arrowStart<500) ) && ( (arrowY>y-50&&arrowY<y-25) || (arrowY>y+25&&arrowY<y+50) ) ){ 
-             gameScore += 25;
-         }
-
-        else if((arrowStart>425&&arrowStart<475) && (arrowY>y-25&&arrowY<y+25)){ 
-             gameScore += 50;
-         }
-                
-      }*/
 
    </script>
  </body>

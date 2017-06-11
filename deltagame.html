@@ -3,7 +3,7 @@
 	<title>Rogue Crawler Game</title>
 </head>
 <body>
-  <canvas id = "canvas" width = "600" height = "600"></canvas>
+  <canvas id = "canvas" width = "1200" height = "1200"></canvas>
   <script type="text/javascript">
      var canvas = document.getElementById("canvas");
 
@@ -31,33 +31,43 @@
      var brick = new Image;
      brick.src = "http://www.clker.com/cliparts/b/m/0/m/n/D/brick-wall-jail.svg";
     
-     for(var p = 0; p<13;p++)
+     for(var p = 0; p<22;p++)
      { 
-      map[p] = [];
-      for(var q=0;q<13;q++){
-        map[p][q];
+       map[p] = [];
+      for(var q = 0;q<22;q++){
+        map[p][q] = 0;
       }
      }
-     var map = [
-  [1,1,1,1,1,1,1,1,1,1,1,4],
-  [1,0,0,0,0,1,1,0,0,0,0,4],
-  [1,0,0,0,0,0,0,0,0,0,0,1],
-  [1,0,0,0,0,0,0,1,1,1,0,1],
-  [1,0,0,0,0,0,0,1,1,1,1,1],
-  [1,0,0,0,0,0,2,0,0,1,1,1],
-  [1,0,0,0,0,0,0,0,0,0,0,1],
-  [1,0,0,1,1,0,0,0,0,0,0,1],
-  [1,0,1,1,1,1,0,0,0,0,0,1],
-  [1,0,1,1,1,1,0,0,0,0,0,1],
-  [3,0,0,0,0,0,0,0,0,0,0,1],
-  [3,1,1,1,1,1,1,1,1,1,1,1]
+     map = [
+  [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,4],
+  [1,0,0,0,0,1,0,1,0,0,0,1,0,0,1,0,0,0,0,0,4],
+  [1,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,1],
+  [1,0,0,0,0,0,0,1,0,1,0,1,0,0,0,1,1,1,0,0,1],
+  [1,0,0,0,0,0,0,1,0,1,0,1,0,0,0,1,1,1,0,1,1],
+  [1,0,0,0,0,0,0,1,0,1,0,1,0,0,0,0,0,1,0,1,1],
+  [1,0,0,0,0,0,0,1,0,1,0,1,0,0,0,0,0,0,0,0,1],
+  [1,0,0,0,0,0,0,1,0,1,0,1,0,0,2,0,0,1,0,1,1],
+  [1,0,0,0,0,0,0,1,0,1,0,1,0,0,0,0,0,1,0,1,1],
+  [1,0,0,0,0,0,0,1,0,1,0,1,0,0,0,0,0,0,0,0,1],
+  [1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1],
+  [1,0,0,0,0,0,0,1,0,1,0,0,0,1,0,0,0,0,0,0,1],
+  [1,0,0,0,0,0,0,1,0,1,0,0,0,1,0,0,0,0,0,0,1],
+  [1,0,0,0,0,0,0,1,0,1,0,0,0,1,0,0,0,0,0,0,1],
+  [1,0,0,0,0,0,0,1,0,1,0,0,0,1,0,0,0,0,0,0,1],
+  [1,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,1],
+  [1,0,0,1,1,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,1],
+  [1,0,1,1,1,1,0,1,0,1,0,0,0,1,0,0,0,0,0,0,1],
+  [1,0,1,1,1,1,0,1,0,1,0,0,0,1,0,0,0,0,0,0,1],
+  [3,0,0,0,0,0,0,1,0,1,0,0,0,1,0,0,0,0,0,0,1],
+  [3,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
 ];
 
         function drawMap(){
-       for(i=40,p=0;i<canvas.width-topRightOffset,p<12;i+=40,p++){
-      for( k = 40,q=0;k<canvas.height-bottomLeftOffset,q<12;k+=40,q++){
+       for(i=40,p=0;i<canvas.width,p<22;i+=40,p++){
+      for( k = 40,q=0;k<canvas.height,q<22;k+=40,q++){
     
-        if(map[p][q]==1){
+        if(map[p][q]==1)
+        {
          ctx.beginPath();
          //ctx.rect(i,k,40,40);
          //ctx.fillStyle = "#562f02";
@@ -91,20 +101,18 @@
 
         }              
 
-        else{
+        else if(map[p][q]==2){
           drawSolider();
           x = p;
           y = q;
-
-
-
-        }    
+          }    
          
 
           } 
 
-      }    
-      }     
+         }    
+      }
+
 
      /*
      for(var i = 40; i<canvas.height;i+=40){
@@ -166,11 +174,10 @@
          soliderfigure.closePath();
 
             }
-        window.onload = function(){
-        	startGame = setInterval(function(){movingSolider();gameOver();},100);
-        }
+        setInterval(movingSolider,100);
+    
 
-        function gameOver(){
+        /*function gameOver(){
           if(time==100){
             if(( (x==0&&y==11) || (x==1&&y==11) ))
             {
@@ -183,12 +190,13 @@
          
         }
       }
+      */
       
         function movingSolider() {
         	//soliderfigure.clearRect(0,0,500,500);
         	drawMap();
-          time++;
-          timer();
+          //time++;
+          //timer();
         	document.addEventListener("keyup",keyUpHandler,false);
         	document.addEventListener("keydown",keyDownHandler,false);
               function keyUpHandler(e) {
